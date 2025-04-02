@@ -4,11 +4,15 @@ const { Server } = require('socket.io');
 const cors = require('cors');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: "https://chat-app-frontend-opal-eight.vercel.app", // Ensure the frontend URL is correct
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type"]
+}));
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "https://chat-app-frontend-opal-eight.vercel.app/",
+        origin: "https://chat-app-frontend-opal-eight.vercel.app",
         methods: ["GET", "POST"]
     }
 });
